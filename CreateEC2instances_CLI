@@ -1,0 +1,12 @@
+
+aws configure set region us-east-1 #command to set the desired region
+aws ec2 create-key-pair --key-name MyEc2KeyPair --query 'KeyMaterial' --output text | out-file -encoding ascii -filepath MyEc2KeyPair.pem #command to create keypair to launch Ec2 Instances
+aws ec2 create-security-group --group-name my-sg --description "My security group" --vpc-id vpc-xxxxxx #command to set Security group in desired vpc
+
+aws ec2 authorize-security-group-ingress --group-id sg-XXXX --protocol tcp --port 22 --cidr 0.0.0.0/0 #command to set the rules in SG
+
+aws ec2 describe-images --owners amazon # command to know about the available AMIs owned by amazon and to get the ami id
+
+aws ec2 run-instances --image-id ami-020cba7c55df1f615 --count 2 --instance-type t2.micro --key-name MyEc2KeyPair --security-group-ids sg-xxxx --subnet-id subnet-xxxx #create and launch the EC2 instances
+
+aws ec2 terminate-instances --instance-ids i-XXXXX #terminate the EC2 instances
