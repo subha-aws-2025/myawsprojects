@@ -7,6 +7,7 @@
 #####################################################
 
 set -x
+set -e
 #to check the list of EC2 instances
 echo "List the EC2 instances details"
 #aws ec2 describe-instances|jq -r "[.Resources:[].Instances:[]|{State: .State.name, InstanceType: .InstanceType, InstanceID: .InstanceId]"
